@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.input.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="1056.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.madmax.emexws.ui.MainFrame">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Файл">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onActClose" text="Выход">
+                     <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Помощь">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onActAbout" text="О программе..." />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab fx:id="tabReceipt" text="Приход товара">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="1019.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="35.0" prefWidth="1010.0" spacing="15.0">
+                                 <children>
+                                    <Label text="Код:" />
+                                    <TextField fx:id="edtReceiptCode" alignment="TOP_LEFT" prefHeight="28.0" prefWidth="224.0" promptText="Код заказа" />
+                                    <Button fx:id="btnReceiptCode" defaultButton="true" mnemonicParsing="false" onAction="#onReceiptCode" text="Добавить" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <TableView fx:id="tblReceiptItems" editable="true" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn fx:id="columnReceiptNN" editable="false" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" sortable="false" styleClass="column-order-number" text="N" />
+                                    <TableColumn fx:id="columnReceiptCode" minWidth="0.0" prefWidth="100.0" sortable="false" styleClass="column-order-code" text="Код" />
+                                    <TableColumn fx:id="columnReceiptStatus" editable="false" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" styleClass="column-order-status" text="Статус" />
+                                 </columns></TableView>
+                              <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" prefHeight="35.0" prefWidth="200.0" spacing="15.0">
+                                 <children>
+                                    <Button fx:id="btnClearReceiptItems" mnemonicParsing="false" text="Отчистить" />
+                                    <Button fx:id="btnReceiptAll" mnemonicParsing="false" onAction="#onReceiptAll" text="Принять" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tabDisposal" text="Выдача товара">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="1019.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" prefHeight="35.0" prefWidth="1010.0" spacing="15.0">
+                                 <children>
+                                    <Label text="Код:" />
+                                    <TextField fx:id="edtDisposalCode" alignment="TOP_LEFT" prefHeight="28.0" prefWidth="224.0" promptText="Код заказа" />
+                                    <Button fx:id="btnDisposalCode" defaultButton="true" mnemonicParsing="false" onAction="#onDisposalCode" text="Добавить" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <TableView fx:id="tblDisposalItems" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn fx:id="columnDisposalNN" editable="false" prefWidth="75.0" sortable="false" styleClass="column-order-number" text="N" />
+                                    <TableColumn fx:id="columnDisposalCode" editable="false" prefWidth="241.0" sortable="false" styleClass="column-order-code" text="Код" />
+                                    <TableColumn fx:id="columnDisposalStatus" editable="false" prefWidth="75.0" styleClass="column-order-status" text="Статус" />
+                                 </columns>
+                              </TableView>
+                              <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" prefHeight="35.0" prefWidth="200.0" spacing="15.0">
+                                 <children>
+                                    <Button fx:id="btnClearDisposalItems" mnemonicParsing="false" text="Отчистить" />
+                                    <Button fx:id="btnDisposalAll" mnemonicParsing="false" onAction="#onDisposalCode" text="Выдать" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
