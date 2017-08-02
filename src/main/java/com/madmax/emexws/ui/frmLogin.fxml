@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="254.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.madmax.emexws.ui.controllers.LoginFrame">
+   <children>
+      <Label layoutX="199.0" layoutY="33.0" text="Логин:" />
+      <TextField fx:id="edtLogin" layoutX="98.0" layoutY="61.0" prefHeight="28.0" prefWidth="242.0" promptText="Ваш логин" />
+      <Label layoutX="193.0" layoutY="106.0" text="Пароль:" />
+      <PasswordField fx:id="edtPassword" layoutX="95.0" layoutY="134.0" prefWidth="248.0" promptText="Ваш пароль" />
+      <Button fx:id="btnLogin" defaultButton="true" layoutX="121.0" layoutY="194.0" mnemonicParsing="false" onAction="#onLoginHandle" prefHeight="28.0" prefWidth="200.0" text="Вход" />
+   </children>
+</AnchorPane>

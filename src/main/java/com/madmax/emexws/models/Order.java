@@ -1,9 +1,11 @@
 package com.madmax.emexws.models;
 
 public class Order {
+    public enum StatusEnum {STATUS_DEFAULT, STATUS_SUCCESS, STATUS_FAILED};
+
     private Integer number;
     private String code;
-    private Boolean status;
+    private StatusEnum status;
 
     public Order() {
         number = 0;
@@ -13,13 +15,13 @@ public class Order {
     public Order(Integer number, String code) {
         this.number = number;
         this.code = code;
-        this.status = false;
+        this.status = StatusEnum.STATUS_DEFAULT;
     }
 
     public Order(String code) {
         this.number = 0;
         this.code = code;
-        this.status = false;
+        this.status = StatusEnum.STATUS_DEFAULT;
     }
 
     public Integer getNumber() {
@@ -38,11 +40,11 @@ public class Order {
         this.code = code;
     }
 
-    public Boolean getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 
@@ -57,4 +59,8 @@ public class Order {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Code: " + code;
+    }
 }

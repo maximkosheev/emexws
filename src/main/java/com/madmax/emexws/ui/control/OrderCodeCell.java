@@ -1,7 +1,8 @@
-package com.madmax.emexws.ui;
+package com.madmax.emexws.ui.control;
 
 
 import com.madmax.emexws.models.Order;
+import com.madmax.emexws.ui.ValidateCellEvent;
 import javafx.event.Event;
 import javafx.event.EventType;
 import javafx.scene.control.cell.TextFieldTableCell;

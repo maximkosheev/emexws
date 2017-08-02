@@ -1,59 +1,49 @@
-package com.madmax.emexws.ui;
+package com.madmax.emexws.ui.controllers;
 
 import com.madmax.emexws.Main;
 import com.madmax.emexws.models.Order;
+import com.madmax.emexws.ui.CriticalMessageBox;
+import com.madmax.emexws.ui.ValidateCellEvent;
+import com.madmax.emexws.ui.control.OrderCodeCell;
+import com.madmax.emexws.ui.control.OrderTableRow;
 import com.sun.javafx.scene.control.skin.TableViewSkin;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.apache.axis2.AxisFault;
-import ru.emex.ws.EmExServiceStub;
+import javafx.stage.Stage;
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
-import java.rmi.RemoteException;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
-public class MainFrame implements Initializable {
-    @FXML
-    TextField edtReceiptCode;
-    @FXML
-    TextField edtDisposalCode;
-    @FXML
-    Button btnReceiptCode;
-    @FXML
-    Button btnDisposalCode;
-    @FXML
-    TableView<Order> tblReceiptItems;
-    @FXML
-    TableView<Order> tblDisposalItems;
-    @FXML
-    Button btnClearReceiptItems;
-    @FXML
-    Button btnClearDisposalItems;
-    @FXML
-    Button btnReceiptAll;
-    @FXML
-    Button btnDisposalAll;
-    @FXML
-    private TableColumn<Order, Integer> columnReceiptNN;
-    @FXML
-    private TableColumn<Order, String> columnReceiptCode;
-    @FXML
-    private TableColumn<Order, Boolean> columnReceiptStatus;
-    @FXML
-    private TableColumn<Order, Integer> columnDisposalNN;
-    @FXML
-    private TableColumn<Order, String> columnDisposalCode;
-    @FXML
-    private TableColumn<Order, Boolean> columnDisposalStatus;
+@Component
+public class MainFrame extends AbstractController implements Initializable {
+    @FXML TextField edtReceiptCode;
+    @FXML TextField edtDisposalCode;
+    @FXML Button btnReceiptCode;
+    @FXML Button btnDisposalCode;
+    @FXML TableView<Order> tblReceiptItems;
+    @FXML TableView<Order> tblDisposalItems;
+    @FXML Button btnClearReceiptItems;
+    @FXML Button btnClearDisposalItems;
+    @FXML Button btnReceiptAll;
+    @FXML Button btnDisposalAll;
+    @FXML private TableColumn<Order, Integer> columnReceiptNN;
+    @FXML private TableColumn<Order, String> columnReceiptCode;
+    @FXML private TableColumn<Order, Integer> columnDisposalNN;
+    @FXML private TableColumn<Order, String> columnDisposalCode;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tblReceiptItems.setRowFactory(call -> new OrderTableRow());
         columnReceiptNN.setCellValueFactory(new PropertyValueFactory<>("number"));
         columnReceiptCode.setCellValueFactory(new PropertyValueFactory<>("code"));
         columnReceiptCode.setCellFactory(call -> new OrderCodeCell());
@@ -67,11 +57,16 @@ public class MainFrame implements Initializable {
             if (!validateOrderCode(event.getCellData()))
                 event.setCellData("#ERROR");
         });
-        columnReceiptStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         columnDisposalNN.setCellValueFactory(new PropertyValueFactory<>("number"));
         columnDisposalCode.setCellValueFactory(new PropertyValueFactory<>("code"));
-        columnDisposalStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+    }
+
+    @Override
+    public void setStage(Stage stage) {
+        super.setStage(stage);
+        getStage().setScene(new Scene((Parent)getView(),1100, 768));
+        getStage().setTitle(Main.APPLICATION_NAME);
     }
 
     private boolean validateOrderCode(String code) {
@@ -123,6 +118,7 @@ public class MainFrame implements Initializable {
         tblDisposalItems.getItems().add(order);
     }
 
+    /*
     @FXML
     void onReceiptAll(ActionEvent e) {
         try {
@@ -137,6 +133,18 @@ public class MainFrame implements Initializable {
         } catch (RemoteException e1) {
             e1.printStackTrace();
         }
+    }
+    */
+
+    @FXML
+    void onReceiptAll(ActionEvent e) {
+        //TODO: КАК ??? foreach в Java tblReceiptItems.getItems().forEach();
+        Iterator<Order> orderIterator = tblReceiptItems.getItems().iterator();
+        while (orderIterator.hasNext()) {
+            Order order = orderIterator.next();
+            order.setStatus(Order.StatusEnum.STATUS_FAILED);
+        }
+        tblReceiptItems.refresh();
     }
 
     @FXML
