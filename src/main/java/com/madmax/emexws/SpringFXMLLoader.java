@@ -6,13 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.util.Callback;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class SpringFXMLLoader {
-    private static final ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
+    private static final ConfigurableApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
     public static Controller load(String url) {
         try (InputStream fxmlStream = SpringFXMLLoader.class.getResourceAsStream(url)) {
@@ -30,5 +31,9 @@ public class SpringFXMLLoader {
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
         }
+    }
+
+    static ConfigurableApplicationContext getContext() {
+        return appContext;
     }
 }

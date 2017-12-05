@@ -1,0 +1,26 @@
+.status-bar {
+	-fx-padding: 4px;
+	-fx-pref-height: 30px;
+	-fx-pref-width: 100%;
+	-fx-vertical-align: middle;
+	-fx-background-color: -fx-body-color;
+	-fx-border-color: lightgray transparent transparent transparent; 
+}
+
+.status-bar > .status-bar-item {
+	-fx-pref-height: 100%;
+}
+
+.status-bar-item.item-1 {
+	-fx-pref-width: 30%;
+}
+
+.status-bar-item.item-2 {
+	-fx-pref-width: 70%;
+}
+
+.status-bar-item > .label {
+	-fx-pref-height: 100%;
+}
+
+

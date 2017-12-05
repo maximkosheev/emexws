@@ -10,13 +10,13 @@
     <version>1.0</version>
 
     <properties>
-        <axis2.version>1.7.5</axis2.version>
         <spring.version>4.3.8.RELEASE</spring.version>
-        <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+        <axis2.version>1.7.5</axis2.version>
+        <log4j.version>1.2.17</log4j.version>
     </properties>
 
     <dependencies>
-        <!-- AXIS2 -->
+        <!-- Axis2 -->
         <dependency>
             <groupId>org.apache.axis2</groupId>
             <artifactId>axis2-kernel</artifactId>
@@ -42,7 +42,8 @@
             <artifactId>axis2-xmlbeans</artifactId>
             <version>${axis2.version}</version>
         </dependency>
-        <!-- Spring -->
+
+        <!-- SpringFramework -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -53,11 +54,27 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <!-- Log4j -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <version>${spring-boot.version}</version>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
     </dependencies>
 
     <build>

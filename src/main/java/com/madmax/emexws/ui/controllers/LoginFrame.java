@@ -2,9 +2,6 @@ package com.madmax.emexws.ui.controllers;
 
 import com.madmax.emexws.Main;
 import com.madmax.emexws.models.User;
-import com.madmax.emexws.ui.CriticalMessageBox;
-import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventTarget;
@@ -16,8 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -61,13 +56,12 @@ public class LoginFrame extends AbstractController implements Initializable {
     @FXML
     void onLoginHandle(ActionEvent e) {
         try {
-            user.setLogin(edtLogin.getText());
+            user.setLogin(Long.parseLong(edtLogin.getText()));
             user.setPassword(edtPassword.getText());
-            LoginEvent loginEvent = new LoginEvent(LOGIN_EVENT);
-            Event.fireEvent(getStage(), loginEvent);
+            getStage().close();
         }
         catch (Exception error) {
-            CriticalMessageBox alert = new CriticalMessageBox(error.getMessage());
+            CriticalMessageBox alert = new CriticalMessageBox("Логин или пароль заданы неверно");
             alert.showAndWait();
         }
     }

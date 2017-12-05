@@ -1,4 +1,4 @@
-package com.madmax.emexws.ui;
+package com.madmax.emexws.ui.controllers;
 
 import com.madmax.emexws.Main;
 import javafx.scene.control.Alert;
